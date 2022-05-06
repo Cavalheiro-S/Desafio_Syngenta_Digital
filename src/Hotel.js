@@ -1,23 +1,13 @@
 class Hotel{
 
-    constructor(name, classification, regularFee, rewardsFee){
+    constructor(name, rating, regularFee, rewardsFee){
         this.name = name;
-        this.classification = classification;
+        this.rating = rating;
         this.regularFee = regularFee;
         this.rewardsFee = rewardsFee;
     }
 
-    customerFee(customerType){
-        if(customerType === "Regular"){
-            return this.regularFee;
-        }        
-        else if(customerType === "Rewards"){
-            return this.rewardsFee;
-        }
-        return "Type of customer invalid";
-    }
-
-    totalPrice(customerType, days){
+    stayTotalPrice(customerType, days){
         const fee = this.customerFee(customerType);
         let total = 0;
         days.forEach(day => {
@@ -29,6 +19,16 @@ class Hotel{
             }
         })
         return total;
+    }
+
+    customerFee(customerType){
+        if(customerType === "Regular"){
+            return this.regularFee;
+        }        
+        else if(customerType === "Rewards"){
+            return this.rewardsFee;
+        }
+        return "Type of customer invalid";
     }
 
     dayCheck(day){

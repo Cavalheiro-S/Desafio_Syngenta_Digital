@@ -1,16 +1,16 @@
 const Hotel = require('./Hotel');
 
 function getCheapestHotel (input) { //DO NOT change the function's name.
-    const [clientType, ...dates]= splitInput(input);
+    const [customerType, ...dates]= splitInput(input);
     const formatedDates = dates.map(date => getWeekDay(date));
     const hotels = addHotels();
-    const cheapestHotel = hotels.reduce((previousPrice,hotel) => {
-        if(hotel.totalPrice(clientType, formatedDates) <= previousPrice.totalPrice(clientType,formatedDates)){
-            if(hotel.classification > previousPrice.classification){
-                previousPrice = hotel;
+    const cheapestHotel = hotels.reduce((previousHotel,currentHotel) => {
+        if(currentHotel.stayTotalPrice(customerType, formatedDates) <= previousHotel.stayTotalPrice(customerType,formatedDates)){
+            if(currentHotel.rating > previousHotel.rating){
+                previousHotel = currentHotel;
             }
         }
-        return previousPrice;
+        return previousHotel;
     })
     return cheapestHotel.name
 }
