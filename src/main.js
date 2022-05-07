@@ -5,7 +5,10 @@ function getCheapestHotel (input) { //DO NOT change the function's name.
     const formatedDates = dates.map(date => getWeekDay(date));
     const hotels = addHotels();
     const cheapestHotel = hotels.reduce((previousHotel,currentHotel) => {
-        if(currentHotel.stayTotalPrice(customerType, formatedDates) <= previousHotel.stayTotalPrice(customerType,formatedDates)){
+        if(currentHotel.stayTotalPrice(customerType, formatedDates) < previousHotel.stayTotalPrice(customerType,formatedDates)){
+            previousHotel = currentHotel;
+        }
+        else if(currentHotel.stayTotalPrice(customerType,formatedDates) == previousHotel.stayTotalPrice(customerType,formatedDates)){
             if(currentHotel.rating > previousHotel.rating){
                 previousHotel = currentHotel;
             }
